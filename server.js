@@ -29,7 +29,7 @@ app.get('/notes', (req, res) => {
 
 app.get('/api/notes', (req,res) => {
 
-return res.json(data);
+return res.status(200).json(data);
 });
 
 app.post('/api/notes',(req,res) => {
@@ -43,6 +43,19 @@ console.log(newNote);
 data.push(newNote);
 const dataString = JSON.stringify(data);
 fs.writeFileSync('./db/db.json',dataString,'utf-8');
+
+    const response = {
+      status: 'success',
+      body: newNote,
+    };
+
+    console.log(response);
+    res.status(201).json(response);
+	}
+	else
+	{
+
+    res.status(500).json('Error in posting review');
 
 	}
 });
