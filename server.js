@@ -8,7 +8,7 @@ const id = () => { return Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)
     .substring(1);};
 
-const PORT = 3001;
+const PORT = 5001;
 
 const app = express();
 
@@ -50,14 +50,24 @@ fs.writeFileSync('./db/db.json',dataString,'utf-8');
     };
 
     console.log(response);
-    res.status(201).json(response);
+    return res.status(201).json(response);
+
 	}
 	else
 	{
 
-    res.status(500).json('Error in posting review');
+    return res.status(500).json('Error in posting review');
 
 	}
+});
+
+
+app.delete('/api/notes/:id',(req,res) =>{
+ const noteIndex = req.params.id;
+	console.log(data);
+	data.splice(noteIndex,1);
+	console.log(data);
+    res.status(204).send({});
 });
 
 app.listen(PORT, () =>
