@@ -26,59 +26,26 @@ app.get('/notes', (req, res) => {
 	res.sendFile(path.join(__dirname,'/public/notes.html'));
 });
 
-app.get('/api/notes',(req,res) =>{
 
-console.log(data);
-res.sendFile(path.join(__dirname,'/db/db.json'));
-return data;
+app.get('/api/notes', (req,res) => {
 
-
+return res.json(data);
 });
-
-app.get('/*', (req,res) => {
-
-res.sendFile(path.join(__dirname,'/public/404.html'))
-
-});
-
-
 
 app.post('/api/notes',(req,res) => {
-  console.info(`${req.method} request received to add a review`);
 
-  // Destructuring assignment for the items in req.body
-  const { title, text } = req.body;
-console.log(req.body);
+console.log(req);
+const {title,text} = req.body;
 if(title && text)
 	{
-
 const newNote = {title,text,'id':id()};
-data.push(newNote);
-const response = {status:"success",body:newNote}
-res.status(201).json(response);
-fs.appendFile('./db/db.json',JSON.stringify(newNote),(err) => {
-  if (err) {
-    console.log(err);
-  }
-  else {
-    // Get the file contents after the append operation
-    console.log("\nFile Contents of file after append:",
-      fs.readFileSync("example_file.txt", "utf8"));
-  }});
-
+console.log(newNote);
+const noteContents = ','+ JSON.stringify(newNote);
+fs.appendFile('./db/db.json',noteContents, (err) => {if(err){console.log(err)}else{console.log("good!")};})
 	}
-else
-	{
-
-res.status(500).json('post error');
-	}
-
-}
-
-
-);
+});
 
 app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT}`)
+	{ console.log(`App listening at http://localhost:${PORT}`);}
 );
 
