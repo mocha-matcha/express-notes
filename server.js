@@ -40,8 +40,10 @@ if(title && text)
 	{
 const newNote = {title,text,'id':id()};
 console.log(newNote);
-const noteContents = ','+ JSON.stringify(newNote);
-fs.appendFile('./db/db.json',noteContents, (err) => {if(err){console.log(err)}else{console.log("good!")};})
+data.push(newNote);
+const dataString = JSON.stringify(data);
+fs.writeFileSync('./db/db.json',dataString,'utf-8');
+
 	}
 });
 
