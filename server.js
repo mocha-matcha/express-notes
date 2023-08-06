@@ -64,6 +64,8 @@ app.delete('/api/notes/:id',(req,res) =>{
  const noteIndex = req.params.id;
 	data.splice(noteIndex,1);
     res.status(204).send();
+	//this solves a bug that sometimes the webpage doesn't update with the json until a manual reload.
+	location.reload();
 });
 
 app.listen(PORT, () =>
