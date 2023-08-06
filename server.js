@@ -49,6 +49,8 @@ fs.writeFileSync('./db/db.json',dataString,'utf-8');
     };
 
      res.status(201).json(response);
+	//this solves a bug that sometimes the webpage doesn't update with the json until a manual reload.
+	window.location.reload();
 
 	}
 	else
@@ -64,8 +66,6 @@ app.delete('/api/notes/:id',(req,res) =>{
  const noteIndex = req.params.id;
 	data.splice(noteIndex,1);
     res.status(204).send();
-	//this solves a bug that sometimes the webpage doesn't update with the json until a manual reload.
-	location.reload();
 });
 
 app.listen(PORT, () =>
