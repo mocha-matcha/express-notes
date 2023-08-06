@@ -8,7 +8,7 @@ const id = () => { return Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)
     .substring(1);};
 
-const PORT = 3001;
+const PORT =  server.listen(process.env.PORT || 3000);;
 
 const app = express();
 
