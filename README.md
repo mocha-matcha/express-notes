@@ -27,7 +27,7 @@ To use this locally:
 
 3. Run either
 
-```node server```
+```node server.js```
 
 or if you have nodemon installed globally:
 
