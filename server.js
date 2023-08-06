@@ -8,8 +8,7 @@ const id = () => { return Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)
     .substring(1);};
 
-const PORT =  server.listen(process.env.PORT || 3000);;
-
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.json());
